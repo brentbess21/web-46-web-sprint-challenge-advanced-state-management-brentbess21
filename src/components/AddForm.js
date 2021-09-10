@@ -4,14 +4,16 @@ import { connect } from 'react-redux';
 
 import { addSmurf, setError } from './../actions'
 
-const AddForm = (props) => {
-    const [state, setState] = useState({
+const initialState = {
         name:"",
         position:"",
         nickname:"",
         description:"",
         id: Date.now()
-    });
+}
+
+const AddForm = (props) => {
+    const [state, setState] = useState(initialState);
 
     const handleChange = e => {
         setState({
@@ -24,16 +26,11 @@ const AddForm = (props) => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
             props.setError("Name, position and nickname fields are required.");
-        }
-        
-        props.addSmurf(state);
-        setState({
-            name:"",
-            position:"",
-            nickname:"",
-            description:"",
-            id: Date.now()
-        })
+        } else {
+            props.addSmurf(state);
+            setState(initialState);
+            props.setError('');
+        } 
     }
 
     return(<section>
@@ -69,7 +66,6 @@ const mapStateToProps = (state) => {
         smurfs: state.smurfs,
         loading: state.loading,
         error: state.error
-
     });
 };
 export default connect(mapStateToProps, { addSmurf, setError })(AddForm);
