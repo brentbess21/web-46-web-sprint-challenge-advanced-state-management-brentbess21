@@ -22,11 +22,12 @@ import { propTypes } from 'react-bootstrap/esm/Image';
         {props.smurfs.map(smurf => {
             return <Smurf smurf={smurf} key={smurf.id}/>
         })}
-        {/* <Smurf smurf={testSmurf}/> */}
     </div>);
 }
 
+
 const mapStateToProps = (state) => {
+    console.log("SMurfList : ", state)
     return ({
         smurfs: state.smurfs,
         loading: state.loading,
