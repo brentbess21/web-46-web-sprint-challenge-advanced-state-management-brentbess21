@@ -7,22 +7,28 @@ export const initialState = {
     error: ''
 }
 
-const reducer = (state, action)=>{
+const reducer = (state = initialState, action)=>{
     switch(action.type) {
         case(FETCH_START):
             return({
                 ...state,
-                loading: true
+                smurfs: [],
+                loading: true,
+                error: ''
             })
         case(FETCH_SUCCESS):
             return({
                 ...state,
                 smurfs: action.payload,
+                loading: false,
+                error: ''
             })
         case(FETCH_FAIL):
             return({
                 ...state,
-                error: "There was an error!"
+                smurfs: [],
+                loading: false,
+                error: action.payload
             })
         case(ADD_SMURF):
             return({
