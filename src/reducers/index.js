@@ -1,5 +1,8 @@
 
 export const initialState = {
+    smurfs: [],
+    loading: true,
+    error: "There was an error!"
 }
 
 const reducer = ()=>{
