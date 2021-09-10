@@ -34,9 +34,9 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return ({
-    smurfs: [],
-    loading: false,
-    error: ''
+    smurfs: state.smurfs,
+    loading: state.loading,
+    error: state.error
   })
 }
 
