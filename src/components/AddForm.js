@@ -9,7 +9,8 @@ const AddForm = (props) => {
         name:"",
         position:"",
         nickname:"",
-        description:""
+        description:"",
+        id: Date.now()
     });
 
     const handleChange = e => {
@@ -25,10 +26,15 @@ const AddForm = (props) => {
             props.setError("Name, position and nickname fields are required.");
         }
         
-        
+        props.addSmurf(state);
+        setState({
+            name:"",
+            position:"",
+            nickname:"",
+            description:"",
+            id: Date.now()
+        })
     }
-
-    const errorMessage = "ERROR";
 
     return(<section>
         <h2>Add Smurf</h2>
